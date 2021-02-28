@@ -1,0 +1,62 @@
+
+Zadanie Python (dowolny framework i narządzia):
+
+    Projekt i implementacja samodzielnego serwisu eMenu, służącego jako restauracyjna karta menu online.
+    Wymagania stawiane aplikacji:
+
+API niepublicznie:
+
+    REST API do zarządzania menu
+    Możliwość tworzenia wielu wersji kart (menu) o unikalnej nazwie.
+    Każda karta może zawierać dowolną liczbę dań.
+    Każde danie powinno charakteryzować się: nazwą, opisem, ceną, czasem przygotowania, datą dodania, datą aktualizacji, informacją czy danie jest wegetariańskie
+    Każda karta charakteryzuje się: nazwą (unikalna), opisem, datą dodania, datą aktualizacji
+    API musi być zabezpieczone przed nieautoryzowanym dostępem (po autoryzacji użytkownika)
+
+API publicznie:
+
+    Rest API do przeglądania niepustych karta menu.
+    Możliwość sortowanie listy po nazwie oraz liczbie dań, za pomocą parametrów GET
+    Filtrowanie listy po nazwie oraz okresie dodanie i ostatnie aktualizacji
+    Detal karty prezentujący wszystkie dana dotyczące karty oraz dań w karcie.
+
+Raportowanie:
+
+    Przygotować mechanizm, który raz dziennie o 10:00 wyśle e-mail do wszystkich użytkowników aplikacji
+    E-mail musi zawierać informację o nowa dodanych przepisach oraz ostatnio zmodyfikowanych przepisach
+    Wysyłamy informację tylko o tych, który zostały zmodyfikowane poprzedniego dnia.
+
+Dodatkowo:
+
+    Konieczne jest załączenie instrukcji instalacji oraz uruchomienia projektu
+    Mile widziane jest przygotowanie aplikacji po uruchomienie w Docker (Dockerfile oraz docker-compose.yml do uruchomienia aplikacji)
+    Dopuszczalne jest korzystanie z ogólnodostępnych rozwiązań.
+    Dane inicjalizacyjne do projektu są mile widziane.
+    Konieczne jest udokumentowane API za pomocą Swagger lub innego narzędzia (dokumentacja powinna być generowana automatycznie)
+    Możliwość dodania zdjęcia dania nie jest wymagana, lecz jej obecność zostanie pozytywnie odebrana.
+    Sposób dostarczenia aplikacji jest dowolny, jednak w miarę możliwości zachęcamy do skorzystania z GitHub-a.
+    Dostarczony kod powinien posiadać pokrycie testami na poziomie min. 70% (coverage), dotyczy wyłącznie kodu napisanego przez kandydata (bez uwzględniania testów zewnętrznych bibliotek).
+    Należy pamiętać o odpowiednich ustawieniach lokalizacyjnych oraz problemach związanych z optymalizacją liczby zapytań do bazy danych.
+    Koniecznym jest wykorzystanie relacyjnego silnika bazodanowego (możliwe do uruchomienia na PostgreSQL bez ingerencji w kod, prócz konfiguracji)
+
+Oceniane będą:
+
+    wykorzystanie i znajomość języka Python
+    wykorzystanie i znajomość wybranego Frameworka,
+    wykorzystanie i znajomość dobrych praktyk pisania kodu
+    wykorzystanie i znajomość wzorców projektowych
+    wykorzystanie i znajomość standardów REST API
+    wykorzystanie i znajomość systemu kontroli wersji GIT
+
+
+
+CRUD - Create Read Update Delete (+ List)
+
+List:           GET     /model  ?param=val&param=val
+Create:         POST    /model
+Read:           GET     /model/<id>
+Update:         PUT     /model/<id>
+Partial Update: PATCH   /model/<id>
+Delete:         DELETE  /model/<id>
+
+Zwracamy:       JSON
