@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
+
 from.models import(
     Menu,
     Dishes
@@ -24,6 +25,7 @@ class AdminMenuSerializer(serializers.ModelSerializer):
             "date_added", 
             "date_uploaded",
             "url",
+            "dishes",
         ]
 
 
@@ -39,7 +41,7 @@ class AdminDishesSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "user",
-            "menu",
+            
             "price",
             "image_url",
             "date_added",

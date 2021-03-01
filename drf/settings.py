@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'menu.apps.MenuConfig'
+    'menu.apps.MenuConfig',
+    'django_filters',
+
 
 ]
 
@@ -138,4 +140,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
+
+    'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S",
+    
 }

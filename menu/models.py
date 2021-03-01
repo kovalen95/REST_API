@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from datetime import datetime
+from django.db.models import Sum
 
 
 # Create your models here.
@@ -9,9 +10,10 @@ from datetime import datetime
 class DateDescriptionMixin(models.Model):
     description = models.CharField(max_length=150)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    date_added = models.DateTimeField(auto_now=True,)
-    date_uploaded = models.DateTimeField(auto_now_add=True,)
+    date_added = models.DateTimeField(auto_now_add=True,)
+    date_uploaded = models.DateTimeField(auto_now=True,)
     image_url = models.URLField(default="")
+  
 
     class Meta:
         abstract = True
@@ -20,21 +22,10 @@ class DateDescriptionMixin(models.Model):
         return self.name
 
 
-class Menu(DateDescriptionMixin, models.Model):
-    name = models.CharField(max_length=50, unique=True,) 
-    slug = models.SlugField(unique=True),
-    # description = models.CharField(max_length=150)
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT())
-    # date_added = models.DateTimeField(auto_now=True, default= "")
-    # date_uploaded = models.DateTimeField(auto_now_add=True, default="")
-    # image_url = models.URLField(default="")
-
-
 class Dishes(DateDescriptionMixin, models.Model):
     name = models.CharField(max_length=50) 
     # description = models.CharField(max_length=150)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT())
-    menu = models.ForeignKey(Menu, on_delete=models.PROTECT)
     price = models.PositiveIntegerField()
     # date_added = models.DateTimeField(auto_now=True, default= "")
     # date_uploaded = models.DateTimeField(auto_now_add=True, default="")
@@ -48,5 +39,16 @@ class Dishes(DateDescriptionMixin, models.Model):
         choices=VEGETARIAN_CHOICES
     )
     
+class Menu(DateDescriptionMixin, models.Model):
+    name = models.CharField(max_length=50, unique=True,) 
+    slug = models.SlugField(unique=True),
+    # description = models.CharField(max_length=150)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT())
+    # date_added = models.DateTimeField(auto_now=True, default= "")
+    # date_uploaded = models.DateTimeField(auto_now_add=True, default="")
+    # image_url = models.URLField(default="")
+    dishes = models.ManyToManyField(Dishes)
 
+
+  
 
