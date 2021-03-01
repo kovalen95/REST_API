@@ -41,7 +41,6 @@ class AdminDishesSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "user",
-            
             "price",
             "image_url",
             "date_added",
